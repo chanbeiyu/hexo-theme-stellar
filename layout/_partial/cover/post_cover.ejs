@@ -9,7 +9,7 @@ function div() {
     if (page.banner.includes('/')) {
       url = page.banner;
     } else {
-      url = 'https://source.unsplash.com/2000x400/?' + page.banner;
+      url = 'https://unsplash.it/1080/270?random&' + page.banner;
     }
   } else {
     // 自动以 tags 作为关键词搜索封面
@@ -21,7 +21,7 @@ function div() {
         }
         params += tag.name;
       });
-      url = 'https://source.unsplash.com/2000x400/?' + params;
+      url = 'https://unsplash.it/1080/270?random&' + params;
     } else {
       url = 'https://source.unsplash.com/random/2000x400';
     }

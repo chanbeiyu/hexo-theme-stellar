@@ -18,3 +18,7 @@ hexo.extend.helper.register('get_page', function(id) {
   }
   return null
 });
+
+hexo.extend.helper.register("random_color", function () {
+    return "#" + ("00000" + ((Math.random() * 0x1000000) << 0).toString(16)).substr(-6);
+});

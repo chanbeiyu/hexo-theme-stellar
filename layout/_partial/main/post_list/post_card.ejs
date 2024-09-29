@@ -20,7 +20,7 @@ function div_default() {
       if (obj.image.includes('/')) {
         cover_url = obj.image;
       } else {
-        cover_url = 'https://source.unsplash.com/1280x640/?' + obj.image;
+        cover_url = 'https://t.mwm.moe/fj?' + obj.image;
       }
     } else {
       // 自动以 tags 作为关键词搜索封面
@@ -32,7 +32,7 @@ function div_default() {
           }
           params += tag.name;
         });
-        cover_url = 'https://source.unsplash.com/1280x640/?' + params;
+        cover_url = 'https://t.mwm.moe/fj?' + params;
       } else {
         cover_url = 'https://source.unsplash.com/random/1280x640';
       }
@@ -83,10 +83,29 @@ function div_default() {
         });
       }
       if (cats.length > 0) {
-        let cat = cats.shift();
-        el += '<span class="cap breadcrumb"' + category_color(cat) + '>';
-        el += icon('default:category')
-        el += `<span>${cat}</span>`
+        for(cat of cats) {
+          el += '<span class="cap breadcrumb"' + category_color(cat) + '>';
+          el += icon('default:category')
+          el += `<span>${cat}</span>`
+          el += '</span>';
+        }
+      }
+    }
+  }
+  if (post.tags && post.tags.length > 0) {
+    if (post.layout === 'post' && post.tags && post.tags.length > 0) {
+        var tags = [];
+        if (post.tags) {
+          post.tags.forEach((tag, i) => {
+          tags.push(tag.name);
+        });
+      }
+      if (tags.length > 0) {
+        el += '<span class="cap breadcrumb">';
+        el += icon('default:tag')
+        for(tag of tags) {
+          el += `<span>${tag}&nbsp;</span>`
+        }
         el += '</span>';
       }
     }
